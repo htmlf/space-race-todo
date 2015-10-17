@@ -22,8 +22,4 @@ app.use(express.static(__dirname+'/assets'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
-	var e = new $event();
-	e.on('test', function() { console.log('test'); });
-	e.is('test');
-	console.log(e);
 });
