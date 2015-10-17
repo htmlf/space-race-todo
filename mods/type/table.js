@@ -7,18 +7,18 @@
 
 	// column names
 	$.cols = function(t) {
-		return (t.length!==undefined? (t[0]||{}): t).keys();
+		return Object.keys(t.length!==undefined? (t[0]||{}): t);
 	};
 
 	// row count
 	$.rows = function(t) {
-		return t.length===undefined? (t[t.keys()[0]||' ']||[]).length : t.length;
+		return t.length===undefined? (t[Object.keys(t)[0]||' ']||[]).length : t.length;
 	};
 
 	// column wise data
 	$.colwise = function(t, cs) {
 		if(!t.length) return t.length===0? {} : (t||{});
-		if(!cs) cs = t[0].keys();
+		if(!cs) cs = Object.keys(t[0]);
 		for(var c=0, C=cs.length, dst={}; c<C; c++)
 			dst[cs[c]] = [];
 		for(var r=0, R=t.length; r<R; r++)
@@ -30,7 +30,7 @@
 	// row wise data
 	$.rowwise = function(t, cs) {
 		if(t.length>=0) return t;
-		if(!cs) cs = t.keys();
+		if(!cs) cs = Object.keys(t);
 		for(var r=0, R=(cs.length? (t[cs]||[]).length : 0), dst=[]; r<R; r++)
 			dst[r] = {};
 		for(var c=0, C=cs.length; c<C; c++)
