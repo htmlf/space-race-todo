@@ -1,6 +1,7 @@
 /* @wolfram77 */
 /* ARRAY - provides basic array functions */
 
+
 // fill values
 if(!Array.prototype.fill) Array.prototype.fill = function(val, bgn, end) {
 	for(var i=bgn||0, I=end||this.length; i<I; i++)
@@ -26,3 +27,8 @@ Array.prototype.append = function(arr) {
 Array.prototype.last = function() {
 	return this[this.length-1];
 };
+
+
+// ready!
+if(module) module.exports = Array;
+console.log('array> ready!');
