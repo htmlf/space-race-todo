@@ -11,7 +11,7 @@
 
 	// add subscription
 	p.on = function(e, fn) {
-		var se = this.sub[e] || [];
+		var se = (this.sub[e]=this.sub[e]||[]);
 		if(se.indexOf(fn)<0) se.push(fn);
 	};
 
