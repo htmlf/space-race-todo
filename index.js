@@ -16,7 +16,7 @@ var app = express();
 app.all('/', function(req, res) {
 	res.sendFile(__dirname+'/assets/index.html');
 });
-app.use(express.static(__dirname+'/assets'));
+app.use(express.static(__dirname+'/mods'));
 
 
 // ready
