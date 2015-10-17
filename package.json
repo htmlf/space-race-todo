@@ -1,0 +1,25 @@
+{
+  "name": "game-miver",
+  "version": "0.0.0",
+  "description": "race using speed boats on a river of milk with friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfram77/game-miver.git"
+  },
+  "keywords": [
+    "race",
+    "milk",
+    "river",
+    "boat"
+  ],
+  "author": "@wolfram77",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wolfram77/game-miver/issues"
+  },
+  "homepage": "https://github.com/wolfram77/game-miver#readme"
+}
