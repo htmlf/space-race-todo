@@ -1,29 +1,34 @@
 /* @wolfram77 */
 /* EVENT - event declaration and handling related functions */
 
-var $type = $type || {};
-$type.event = function(v) {
+(function() {
 
-	// subscriptions
-	this.v = v || {};
-};
-(function(o) {
+	var $ = function(v) {
+		// subscriptions
+		this.sub = v || {};
+	};
+	var p = $.prototype;
 
 	// add subscription
-	o.on = function(e, fn) {
-		this.v[e] = this.v[e] || [];
-		if(this.v[e].indexOf(fn)<0) this.v[e].push(fn);
+	p.on = function(e, fn) {
+		var se = this.sub[e] || [];
+		if(se.indexOf(fn)<0) se.push(fn);
 	};
 
 	// remove subscription
-	o.off = function(e, fn) {
-		var i = this.v[e]? this.v[e].indexOf(fn) : -1;
-		if(i>=0) this.v[e].splice(i, 1);
+	p.off = function(e, fn) {
+		var se = this.sub[e], i = se? se.indexOf(fn) : -1;
+		if(i>=0) se.splice(i, 1);
 	};
 
 	// declare/publish event
-	o.is = function(e, args) {
-		for(var i=0, I=(this.v[e]||[]).length; i<I; i++)
-			this.v[e][i](args);
+	p.is = function(e, args) {
+		for(var se=this.sub[e], i=0, I=(se||[]).length; i<I; i++)
+			se[i](args);
 	};
-})($type.event.prototype);
+
+	// ready
+	if(module) module.exports = $;
+	else (global.$type=global.$type||{}).event = $;
+	console.log('event> ready!');
+})();
