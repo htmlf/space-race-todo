@@ -21,7 +21,4 @@ app.use(express.static(__dirname+'/assets'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
-	var a = new $array(10);
-	a.fill(2);
-	console.log(a);
 });
