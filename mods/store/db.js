@@ -1,6 +1,5 @@
 /* @wolfram77 */
-/* DB - manages db operations */
-/* fn: expand, filter, batch, create, drop, insert, delete, select, update */
+/* DB - defines a sqlite3 database connection and provides basic operations */
 
 // required modules
 var sqlite3 = require('sqlite3');
