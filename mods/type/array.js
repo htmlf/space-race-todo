@@ -1,7 +1,7 @@
 /* @wolfram77 */
 /* ARRAY - provides basic array functions */
 
-(function() {
+(function(g) {
 
 	// fill values
 	if(!Array.prototype.fill) Array.prototype.fill = function(val, bgn, end) {
@@ -31,6 +31,6 @@
 
 
 	// ready!
-	if(module) module.exports = Array;
+	if(typeof module!=='undefined') module.exports = Array;
 	console.log('array> ready!');
-})();
+})(this);

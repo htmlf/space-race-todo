@@ -1,7 +1,7 @@
 /* @wolfram77 */
 /* EVENT - event declaration and handling related functions */
 
-(function() {
+(function(g) {
 
 	var $ = function(v) {
 		// subscriptions
@@ -28,7 +28,7 @@
 	};
 
 	// ready
-	if(module) module.exports = $;
-	else (global.$type=global.$type||{}).event = $;
+	if(typeof module!=='undefined') module.exports = $;
+	else (g.$type=g.$type||{}).event = $;
 	console.log('event> ready!');
-})();
+})(this);

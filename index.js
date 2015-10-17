@@ -14,7 +14,7 @@ var app = express();
 
 // url interface
 app.all('/', function(req, res) {
-	res.sendFile(__dirname+'/assets/index.html');
+	res.sendFile(__dirname+'/mods/index.html');
 });
 app.use(express.static(__dirname+'/mods'));
 
