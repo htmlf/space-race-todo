@@ -29,7 +29,6 @@
 		return this[this.length-1];
 	};
 
-
 	// ready!
 	if(typeof module!=='undefined') module.exports = Array;
 	console.log('array> ready!');

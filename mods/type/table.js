@@ -1,39 +1,45 @@
 /* @wolfram77 */
 /* TABLE - tabular data structuring functions */
 
-var $type = $type || {};
-$type.table = {
+(function(g) {
+
+	var $ = {};
 
 	// column names
-	'cols': function(v) {
-		return (v.length!==undefined? (v[0]||{}): v).keys();
-	},
+	$.cols = function(t) {
+		return (t.length!==undefined? (t[0]||{}): t).keys();
+	};
 
 	// row count
-	'rows': function(v) {
-		return v.length===undefined? (v[v.keys()[0]||' ']||[]).length : v.length;
-	},
+	$.rows = function(t) {
+		return t.length===undefined? (t[t.keys()[0]||' ']||[]).length : t.length;
+	};
 
-	// data in column order
-	'colwise': function(v, cs) {
-		if(!v.length) return v.length===0? {} : (v||{});
-		if(!cs) cs = v[0].keys();
+	// column wise data
+	$.colwise = function(t, cs) {
+		if(!t.length) return t.length===0? {} : (t||{});
+		if(!cs) cs = t[0].keys();
 		for(var c=0, C=cs.length, dst={}; c<C; c++)
 			dst[cs[c]] = [];
 		for(var r=0, R=v.length; r<R; r++)
 			for(c=0; c<C; c++)
-				dst[cs[c]][r] = v[r][cs[c]];
+				dst[cs[c]][r] = t[r][cs[c]];
 		return dst;
-	},
+	};
 
-	// data in row order
-	'rowwise': function(v, cs) {
-		if(v.length>=0) return v;
-		if(!cs) cs = v.keys();
-		for(var r=0, R=(cs.length? (v[cs]||[]).length : 0), dst=[]; r<R; r++)
+	// row wise data
+	$.rowwise = function(t, cs) {
+		if(t.length>=0) return t;
+		if(!cs) cs = t.keys();
+		for(var r=0, R=(cs.length? (t[cs]||[]).length : 0), dst=[]; r<R; r++)
 			dst[r] = {};
 		for(var c=0, C=cs.length; c<C; c++)
 			for(r=0; r<R; r++)
-				dst[r][cs[c]] = v[cs[c]][r];
-	}
-};
+				dst[r][cs[c]] = t[cs[c]][r];
+	};
+
+	// ready
+	if(typeof module!=='undefined') module.exports = $;
+	else (g.$type=g.$type||{}).table = $;
+	console.log('table> ready!');
+})(this);
