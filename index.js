@@ -5,7 +5,7 @@
 var express = require('express');
 
 // load mods
-var $array = require('./mods/type/array');
+require('./mods/type/array');
 
 // init express
 var app = express();
@@ -21,7 +21,4 @@ app.use(express.static(__dirname+'/assets'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
-	var a = new Array(10);
-	a.fill(2);
-	console.log(a);
 });
