@@ -21,7 +21,7 @@
 		if(!cs) cs = t[0].keys();
 		for(var c=0, C=cs.length, dst={}; c<C; c++)
 			dst[cs[c]] = [];
-		for(var r=0, R=v.length; r<R; r++)
+		for(var r=0, R=t.length; r<R; r++)
 			for(c=0; c<C; c++)
 				dst[cs[c]][r] = t[r][cs[c]];
 		return dst;
@@ -36,6 +36,7 @@
 		for(var c=0, C=cs.length; c<C; c++)
 			for(r=0; r<R; r++)
 				dst[r][cs[c]] = t[cs[c]][r];
+		return dst;
 	};
 
 	// ready
