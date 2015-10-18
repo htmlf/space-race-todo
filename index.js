@@ -9,6 +9,7 @@ var $array = require('./mods/type/array');
 var $event = require('./mods/type/event');
 var $table = require('./mods/type/table');
 var $line = require('./mods/math/line');
+var $random = require('./mods/math/random');
 
 // init express
 var app = express();
@@ -24,4 +25,8 @@ app.use(express.static(__dirname+'/mods'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
+	var a = [];
+	for(var i=0; i<10; i++)
+		a.push($random.sympow([1,2], 4));
+	console.log(a);
 });
