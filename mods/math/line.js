@@ -41,6 +41,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$type=g.$type||{}).line = $;
+	else (g.$math=g.$math||{}).line = $;
 	console.log('line> ready!');
 })(this);
