@@ -1,0 +1,13 @@
+var $line = $math.line;
+var l1 = $line.define([0,0], [2,2]);
+var l2 = $line.define([0,2], [2,0]);
+var l1d = $line.distance(l1, [1,0]);
+var l2d = $line.distance(l2, [1,2]);
+var p12 = $line.intersect(l1, l2);
+var l3 = $line.parallel(l1, [2,1]);
+var l4 = $line.perpendicular(l3, [2,1]);
+var p34 = $line.intersect(l3, l4);
+var p56 = $line.intersectRanged([[0,0], [2,2]], [[0,5], [5,0]]);
+console.log('l1', l1, 'l2', l2);
+console.log('l1d', l1d, 'l2d', l2d, 'p12', p12);
+console.log('l3', l2, 'l4', l4, 'p34', p34, 'p56', p56);
