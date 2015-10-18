@@ -4,15 +4,20 @@
 // required modules
 var express = require('express');
 
+// load mods
+var $array = require('./mods/type/array');
+var $event = require('./mods/type/event');
+var $table = require('./mods/type/table');
+
 // init express
 var app = express();
 
 
 // url interface
 app.all('/', function(req, res) {
-	res.sendFile(__dirname+'/assets/index.html');
+	res.sendFile(__dirname+'/mods/index.html');
 });
-app.use(express.static(__dirname+'/assets'));
+app.use(express.static(__dirname+'/mods'));
 
 
 // ready
