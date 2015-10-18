@@ -18,7 +18,7 @@
 	// column wise data
 	$.colwise = function(t, cs) {
 		if(!t.length) return t.length===0? {} : (t||{});
-		if(!cs) cs = Object.keys(t[0]);
+		cs = cs || Object.keys(t[0]);
 		for(var c=0, C=cs.length, dst={}; c<C; c++)
 			dst[cs[c]] = [];
 		for(var r=0, R=t.length; r<R; r++)
@@ -30,8 +30,8 @@
 	// row wise data
 	$.rowwise = function(t, cs) {
 		if(t.length>=0) return t;
-		if(!cs) cs = Object.keys(t);
-		for(var r=0, R=(cs.length? (t[cs]||[]).length : 0), dst=[]; r<R; r++)
+		cs = cs || Object.keys(t);
+		for(var r=0, R=(cs.length? (t[cs[0]]||[]).length : 0), dst=[]; r<R; r++)
 			dst[r] = {};
 		for(var c=0, C=cs.length; c<C; c++)
 			for(r=0; r<R; r++)

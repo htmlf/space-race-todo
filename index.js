@@ -29,4 +29,6 @@ var server = app.listen(80, function() {
 	var rwd = $table.rowwise(cwd);
 	console.log('rwd=%j', rwd);
 	console.log('cols=%j, rows=%d', $table.cols(rwd), $table.rows(rwd));
+	cwd = $table.colwise(rwd);
+	console.log('cwd=%j', cwd);
 });
