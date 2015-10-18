@@ -26,7 +26,7 @@ var server = app.listen(80, function() {
 	console.log('miver>> ready!');
 	var l1 = $line.define([0,0], [2,2]);
 	var l2 = $line.define([0,2], [2,0]);
-	var l1d = $line.distance(l3, [1,0]);
+	var l1d = $line.distance(l1, [1,0]);
 	var l2d = $line.distance(l2, [1,2]);
 	var p12 = $line.intersect(l1, l2);
 	var l3 = $line.parallel(l1, [2,1]);
