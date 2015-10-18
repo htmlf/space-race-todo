@@ -25,8 +25,4 @@ app.use(express.static(__dirname+'/mods'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
-	var a = [];
-	for(var i=0; i<10; i++)
-		a.push($random.sympow([1,2], 4));
-	console.log(a);
 });
