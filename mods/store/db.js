@@ -1,5 +1,6 @@
 /* @wolfram77 */
 /* DB - defines a sqlite3 database connection and provides basic operations */
+/* pending review */
 
 // required modules
 var sqlite3 = require('sqlite3');
