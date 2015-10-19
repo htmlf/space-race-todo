@@ -7,12 +7,12 @@
 
 	// define from point p to q
 	$.define = function(p, q) {
-		return $.sub(q, p);
+		return this.sub(q, p);
 	};
 
 	// to polar form
 	$.toPolar = function(a) {
-		return [$.length(a), $.angle(a)];
+		return [this.length(a), this.angle(a)];
 	};
 
 	// to cartesian form

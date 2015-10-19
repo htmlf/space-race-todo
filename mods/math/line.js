@@ -29,13 +29,13 @@
 
 	// distance of point p from line a
 	$.distance = function(a, p) {
-		var q = $.intersect($.perpendicular(a, p), a);
+		var q = this.intersect(this.perpendicular(a, p), a);
 		return Math.sqrt((p[0]-q[0])*(p[0]-q[0]) + (p[1]-q[1])*(p[1]-q[1]));
 	};
 
 	// intersection point of ranged lines a, b (a = point p to q)
 	$.intersectRanged = function(a, b) {
-		var p = $.intersect($.define(a[0], a[1]), $.define(b[0], b[1]));
+		var p = this.intersect(this.define(a[0], a[1]), this.define(b[0], b[1]));
 		return ((p[0]>=a[0][0] && p[0]<=a[1][0])&&(p[0]>=b[0][0] && p[0]<=b[1][0]))? p : null;
 	};
 

@@ -10,6 +10,7 @@ var $event = require('./mods/type/event');
 var $table = require('./mods/type/table');
 var $line = require('./mods/math/line');
 var $random = require('./mods/math/random');
+var $vector = require('./mods/math/vector');
 
 // init express
 var app = express();
@@ -25,4 +26,6 @@ app.use(express.static(__dirname+'/mods'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
+	var v = $vector.define([0,0], [1,1]);
+	console.log(v);
 });
