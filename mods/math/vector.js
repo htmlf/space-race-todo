@@ -17,7 +17,7 @@
 
 	// to cartesian form
 	$.toCartesian = function(a) {
-		return [a[0]*Math.cos(a[1]), a[1]*Math.cos(a[0])];
+		return [a[0]*Math.cos(a[1]), a[0]*Math.sin(a[1])];
 	};
 
 	// length
