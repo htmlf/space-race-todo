@@ -8,6 +8,9 @@ var express = require('express');
 var $array = require('./mods/type/array');
 var $event = require('./mods/type/event');
 var $table = require('./mods/type/table');
+var $line = require('./mods/math/line');
+var $random = require('./mods/math/random');
+var $vector = require('./mods/math/vector');
 
 // init express
 var app = express();
