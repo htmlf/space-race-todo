@@ -1,0 +1,17 @@
+var $vector = $math.vector;
+var v = $vector.define([0,0], [1,1]);
+var vp = $vector.toPolar(v);
+var vc = $vector.toCartesian(vp);
+var vl = $vector.length(v);
+var va = $vector.angle(v);
+var v1 = $vector.add(v, [1,1]);
+var v2 = $vector.sub(v1, [1,1]);
+var vdt = $vector.dot(v, [1,0]);
+var vcs = $vector.cross(v, [1,0]);
+var vrt = $vector.rotate(v, Math.PI/4);
+var vsl = $vector.scale(v, 2);
+console.log('v', v, 'vl', vl, 'va', va);
+console.log('vp', vp, 'vc', vc);
+console.log('v1', v1, 'v2', v2);
+console.log('vdt', vdt, 'vcs', vcs);
+console.log('vrt', vrt, 'vsl', vsl);
