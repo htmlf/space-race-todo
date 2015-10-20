@@ -11,6 +11,7 @@ var $table = require('./mods/type/table');
 var $line = require('./mods/math/line');
 var $random = require('./mods/math/random');
 var $vector = require('./mods/math/vector');
+var $serial = require('./mods/code/serial');
 
 // init express
 var app = express();
