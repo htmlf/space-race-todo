@@ -27,10 +27,4 @@ app.use(express.static(__dirname+'/mods'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
-	var sr = new $serial();
-	for(var i=0; i<10; i++)
-		sr.call(function() {
-		console.log('i am serial');
-		setTimeout(function() { sr.end(); }, 1000);
-	});
 });
