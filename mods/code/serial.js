@@ -1,34 +1,41 @@
 /* @wolfram77 */
-/* SERIAL - define a serially runnable function */
+/* SERIAL - define a serially runnable function calls */
 
 (function(g) {
 
-	var $ = function(fn) {
-		this.fn = fn;
-		this.ps = [];
+	var $ = function(ps) {
+		// parameters
+		this.ps = ps || [];
 	};
 	var p = $.prototype;
 
-	p.call = function() {
-		this.apply(arguments[0], Array.prototype.slice.call(arguments, 1));
+	// call function with argument list
+	p.call = function(fn, vthis) {
+		this.apply(fn, vthis, Array.prototype.slice.call(arguments, 2));
 	};
 
-	p.apply = function(vthis, args) {
-		this.ps.push([vthis, args]);
-		if(this.ps.length===1) process.nextTick(function() { this.run(); });
+	// call function with arguments array
+	p.apply = function(fn, vthis, args) {
+		var o = this;
+		o.ps.push({'fn': fn, 'vthis': vthis, 'args': args});
+		if(o.ps.length===1) process.nextTick(function() { o.run(); });
 	};
 
+	// private: run function
 	p.run = function() {
-		this.fn.apply(this.ps[0][0], this.ps[0][1]);
+		var pr = this.ps[0];
+		pr.fn.apply(pr.vthis, pr.args);
 	};
 
+	// indicate end of function call
 	p.end = function() {
+		var o = this;
 		this.ps.shift();
-		if(this.ps.length>0) process.nextTick(function() { this.run(); });
+		if(this.ps.length>0) process.nextTick(function() { o.run(); });
 	};
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$code=g.$code||{}).event = $;
-	console.log('event> ready!');
+	else (g.$code=g.$code||{}).serial = $;
+	console.log('serial> ready!');
 })(this);

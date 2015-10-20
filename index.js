@@ -29,7 +29,7 @@ var server = app.listen(80, function() {
 	console.log('miver>> ready!');
 	var fn = new $serial(function() {
 		console.log('i am serial');
-		setTimeout(function() { fn.done(); }, 1000);
+		setTimeout(function() { fn.end(); }, 1000);
 	});
 	for(var i=0; i<10; i++)
 		fn.call();
