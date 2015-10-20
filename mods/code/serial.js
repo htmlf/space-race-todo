@@ -20,10 +20,12 @@
 		if(this.ps.length===1) this.run(this.ps[0]);
 	};
 
+	// private: next tick
+	p.nextTick = (typeof process!=='undefined' && process.nextTick)? process.nextTick : function(fn) { setTimeout(fn, 0); };
+
 	// private: run function
 	p.run = function(pr) {
-		var rnr = (process && process.nextTick)? process.nextTick : setTimeout;
-		rnr(function() { pr.fn.apply(pr.vthis, pr.args); });
+		this.nextTick(function() { pr.fn.apply(pr.vthis, pr.args); });
 	};
 
 	// indicate end of function call
