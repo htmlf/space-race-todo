@@ -11,6 +11,7 @@ var $table = require('./mods/type/table');
 var $line = require('./mods/math/line');
 var $random = require('./mods/math/random');
 var $vector = require('./mods/math/vector');
+var $serial = require('./mods/code/serial');
 
 // init express
 var app = express();
@@ -26,4 +27,10 @@ app.use(express.static(__dirname+'/mods'));
 // ready
 var server = app.listen(80, function() {
 	console.log('miver>> ready!');
+	var fn = new $serial(function() {
+		console.log('i am serial');
+		setTimeout(function() { fn.done(); }, 1000);
+	});
+	for(var i=0; i<10; i++)
+		fn.call();
 });
