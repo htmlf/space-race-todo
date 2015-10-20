@@ -4,6 +4,7 @@
 // required modules
 var http = require('http');
 var express = require('express');
+var socketio = require('socket.io');
 
 // load mods
 var $array = require('./mods/type/array');
@@ -14,8 +15,10 @@ var $random = require('./mods/math/random');
 var $vector = require('./mods/math/vector');
 var $serial = require('./mods/code/serial');
 
-// init express
+// init server
 var app = express();
+var server = http.createServer(app);
+var io = socketio(server);
 
 
 // url interface
@@ -26,6 +29,6 @@ app.use(express.static(__dirname+'/mods'));
 
 
 // ready
-var server = http.createServer(app).listen(80, function() {
+server.listen(80, function() {
 	console.log('miver>> ready!');
 });
