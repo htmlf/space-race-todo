@@ -26,4 +26,9 @@
 		this.ps.shift();
 		if(this.ps.length>0) process.nextTick(function() { this.run(); });
 	};
+
+	// ready
+	if(typeof module!=='undefined') module.exports = $;
+	else (g.$code=g.$code||{}).event = $;
+	console.log('event> ready!');
 })(this);
