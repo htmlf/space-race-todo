@@ -31,6 +31,10 @@ app.use(express.static(__dirname+'/mods'));
 // ws interface
 io.on('connection', function(skt) {
 	console.log('a user connected on web socket');
+	skt.on('msg', function(msg) {
+		console.log('msg: '+msg);
+		io.emit('msg', msg);
+	});
 	skt.on('disconnect', function() {
 		console.log('user disconnected');
 	});
