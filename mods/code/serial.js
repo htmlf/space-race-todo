@@ -16,22 +16,20 @@
 
 	// call function with arguments array
 	p.apply = function(fn, vthis, args) {
-		var o = this;
-		o.ps.push({'fn': fn, 'vthis': vthis, 'args': args});
-		if(o.ps.length===1) process.nextTick(function() { o.run(); });
+		this.ps.push({'fn': fn, 'vthis': vthis, 'args': args});
+		if(this.ps.length===1) this.run(this.ps[0]);
 	};
 
 	// private: run function
-	p.run = function() {
-		var pr = this.ps[0];
-		pr.fn.apply(pr.vthis, pr.args);
+	p.run = function(pr) {
+		var rnr = (process && process.nextTick)? process.nextTick : setTimeout;
+		rnr(function() { pr.fn.apply(pr.vthis, pr.args); });
 	};
 
 	// indicate end of function call
 	p.end = function() {
-		var o = this;
 		this.ps.shift();
-		if(this.ps.length>0) process.nextTick(function() { o.run(); });
+		if(this.ps.length>0) this.run(this.ps[0]);
 	};
 
 	// ready
