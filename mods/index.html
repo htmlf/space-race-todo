@@ -8,6 +8,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
 	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" href="index.css">
 	<script src="type/array.js"></script>
 	<script src="type/event.js"></script>
 	<script src="type/table.js"></script>
@@ -19,11 +20,18 @@
 	<title>miver</title>
 </head>
 <body>
-<h1>Hello Gandi</h1>
-<form>
-	<input id="txt" type="text" placeholder="txt">
-	<input id="btn" type="button" value="btn"><br>
-	<div id="msg"></div>
+<form class="container">
+<h1>The Big Gandi Theory</h1>
+<div class="row">
+	<div class="input-field col s10">
+		<label for="txt">Shout</label>
+		<input id="txt" type="text">
+	</div>
+	<div class="input-field col s2">
+		<button id="btn" class="waves-effect waves-light btn btn-large" type="button" style="width: 100%;">Out</button>
+	</div>
+</div>
+<ul id="msg"></ul>
 </form>
 </body>
 </html>

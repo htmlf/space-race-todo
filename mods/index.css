@@ -1,0 +1,11 @@
+#msg {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#msg li {
+	padding: 5px 10px;
+}
+#msg li:nth-child(odd) {
+	background: #eee;
+}
