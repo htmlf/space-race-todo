@@ -2,6 +2,7 @@
 /* INDEX - main server code */
 
 // required modules
+var http = require('http');
 var express = require('express');
 
 // load mods
@@ -25,6 +26,6 @@ app.use(express.static(__dirname+'/mods'));
 
 
 // ready
-var server = app.listen(80, function() {
+var server = http.createServer(app).listen(80, function() {
 	console.log('miver>> ready!');
 });
