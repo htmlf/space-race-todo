@@ -21,11 +21,20 @@ var server = http.createServer(app);
 var io = socketio(server);
 
 
-// url interface
+// http interface
 app.all('/', function(req, res) {
 	res.sendFile(__dirname+'/mods/index.html');
 });
 app.use(express.static(__dirname+'/mods'));
+
+
+// ws interface
+io.on('connection', function(skt) {
+	console.log('a user connected on web socket');
+	skt.on('disconnect', function() {
+		console.log('user disconnected');
+	});
+});
 
 
 // ready
