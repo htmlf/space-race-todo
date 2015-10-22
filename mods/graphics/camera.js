@@ -19,8 +19,12 @@
 		var c=this.canvas, s=this.state;
 		c.save();
 		c.clearRect(0, 0, c.elem.width, c.elem.height);
-		c.scale(s.scl);
-		c.rotate(s.ang);
+		c.translate(c.elem.width/2, c.elem.height/2);
+		c.beginPath();
+		c.ellipse(0,0,5,5);
+		c.stroke();
+		c.scale(s.scl, s.scl);
+		c.rotate(-s.ang);
 		c.translate(-s.pos[0], -s.pos[1]);
 	};
 
@@ -47,7 +51,7 @@
 	};
 
 	// restore state
-	o.restore = function() {
+	p.restore = function() {
 		this.state = this.states.pop();
 	};
 
@@ -55,4 +59,4 @@
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$graphics=g.$graphics||{}).camera = $;
 	console.log('camera> ready!');
-})();
+})(this);
