@@ -3,27 +3,28 @@
 
 (function(g) {
 
-	var c = document.getElementById(id);
-	if(!c.getContext) return;
-	var $ = c.getContext('2d');
-	(function() {
+	var $ = function(id) {
+		console.log(id);
+		var c = document.getElementById(id);
+		if(!c.getContext) return;
+		var o = c.getContext('2d');
 		// element (for width, height)
-		$.element = c;
-	})();
-	var p = $.prototype;
+		o.element = c;
+		return o;
+	};
+	var p = CanvasRenderingContext2D.prototype;
 
 	// ellipse path
 	// thanks: http://www.williammalone.com/briefs/how-to-draw-ellipse-html5-canvas/
 	p.ellipse = function(x, y, w, h) {
 		var a=0.5*w, b=0.5*0.8*h;
-		this.beginPath();
 		this.moveTo(x, y-b);
 		this.bezierCurveTo(x+a, y-b, x+a, y+b, x, y+b);
 		this.bezierCurveTo(x-a, y+b, x-a, y-b, x, y-b);
 	};
 
 	// path (function-based)
-	var pathFn = function(p, closed) {
+	p.pathFn = function(p, closed) {
 		this.beginPath();
 		for(var i=0, I=p.length; i<I; i++)
 			this[p[i].fn].apply(this, p[i].args);
@@ -31,7 +32,8 @@
 	};
 
 	// path (line)
-	var pathLine = function(p, closed) {
+	p.pathLine = function(p, closed) {
+		console.log(this);
 		this.beginPath();
 		if(p.length>0) this.moveTo(p[0][0], p[0][1]);
 		for(var i=0, I=p.length; i<I; i++)
@@ -40,7 +42,7 @@
 	};
 
 	// path (smooth)
-	var pathSmooth = function(p, closed) {
+	p.pathSmooth = function(p, closed) {
 		var $l = $math.line;
 		if(p.length<3) { pathLine(p, closed);	return;	}
 		this.beginPath();
@@ -59,11 +61,12 @@
 	};
 
 	// path (generic)
-	p.path = function() {
-		var closed = opt.indexOf('closed')>=0;
-		if(!p.length) pathFn(p, closed);
-		else if(opt.indexOf('smooth')<0) pathLine(p, closed);
-		else pathSmooth(p, closed);
+	p.path = function(p, opt) {
+		opt = opt || '';
+		var closed = opt.indexOf('c')>=0;
+		if(!p.length) this.pathFn(p, closed);
+		else if(opt.indexOf('s')<0) this.pathLine(p, closed);
+		else this.pathSmooth(p, closed);
 	};
 
 	// ready
