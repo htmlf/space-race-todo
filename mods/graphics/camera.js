@@ -11,6 +11,7 @@
 			'ang': 0,
 			'scl': 1
 		};
+		this.cam = document.getElementById('cam');
 	};
 	var p = $.prototype;
 
@@ -20,9 +21,7 @@
 		c.save();
 		c.clearRect(0, 0, c.elem.width, c.elem.height);
 		c.translate(c.elem.width/2, c.elem.height/2);
-		c.beginPath();
-		c.ellipse(0,0,5,5);
-		c.stroke();
+		c.drawImage(this.cam, -100,-100);
 		c.scale(s.scl, s.scl);
 		c.rotate(-s.ang);
 		c.translate(-s.pos[0], -s.pos[1]);
