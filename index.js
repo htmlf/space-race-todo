@@ -23,7 +23,7 @@ var io = socketio(server);
 
 // http interface
 app.all('/', function(req, res) {
-	res.sendFile(__dirname+'/mods/index.html');
+	res.sendFile(__dirname+'/assets/index.html');
 });
 app.use('/mods', express.static(__dirname+'/mods'));
 app.use('/', express.static(__dirname+'/assets'));
