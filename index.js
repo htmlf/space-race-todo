@@ -25,7 +25,8 @@ var io = socketio(server);
 app.all('/', function(req, res) {
 	res.sendFile(__dirname+'/mods/index.html');
 });
-app.use(express.static(__dirname+'/mods'));
+app.use('/mods', express.static(__dirname+'/mods'));
+app.use('/', express.static(__dirname+'/assets'));
 
 
 // ready
