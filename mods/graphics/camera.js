@@ -1,54 +1,58 @@
 /* @wolfram77 */
 /* CAMERA - manage camera for scene view */
 
-var $graphics = $graphics || {};
-var $graphics.camera = function($canvas) {
-	this.$canvas = $canvas;
-	this.states = [];
-	this.pos = [0, 0];
-	this.ang = 0;
-	this.scl = 1;
-};
-(function(o) {
+(function(g) {
+
+	var $ = function(canvas) {
+		this.canvas = canvas;
+		this.states = [];
+		this.state = {
+			'pos': [0, 0],
+			'ang': 0,
+			'scl': 1
+		};
+	};
+	var p = $.prototype;
 
 	// begin (before draw)
-	this.begin = function() {
-		var $c = this.$canvas;
-		$c.save();
-		$c.clearRect(0, 0, $c.element.width, $c.element.height);
-		$c.scale(this.scl);
-		$c.rotate(this.ang);
-		$c.translate(-this.pos[0], -this.pos[1]);
+	p.begin = function() {
+		var c=this.canvas, s=this.state;
+		c.save();
+		c.clearRect(0, 0, c.elem.width, c.elem.height);
+		c.scale(s.scl);
+		c.rotate(s.ang);
+		c.translate(-s.pos[0], -s.pos[1]);
 	};
 
 	// end (after draw)
-	o.end = function() {
-		var $c = this.$canvas;
-		$c.restore();
+	p.end = function() {
+		var c = this.canvas;
+		c.restore();
 	};
 
 	// translate
-	o.translate = function(p) {
-		var $v = $math.vector;
-		this.pos = $v.add(this.pos, $v.rotate(p, this.ang));
+	p.translate = function(p) {
+		var $v=$math.vector, s=this.state;
+		s.pos = $v.add(s.pos, $v.rotate(p, s.ang));
 	};
 
 	// rotate
-	o.rotate = function(a) {
-		this.ang += a;
+	p.rotate = function(a) {
+		this.state.ang += a;
 	};
 
-
 	// save state
-	o.save = function() {
-		this.states.push({'pos': this.pos. 'ang': this.ang, 'scl': this.scl});
+	p.save = function() {
+		this.states.push(this.state);
 	};
 
 	// restore state
 	o.restore = function() {
-		var s = this.states.pop();
-		this.pos = s.pos;
-		this.ang = s.ang;
-		this.scl = s.scl;
+		this.state = this.states.pop();
 	};
-})($graphics.camera.prototype);
+
+	// ready
+	if(typeof module!=='undefined') module.exports = $;
+	else (g.$graphics=g.$graphics||{}).camera = $;
+	console.log('camera> ready!');
+})();

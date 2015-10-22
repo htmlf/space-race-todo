@@ -9,7 +9,7 @@
 		if(!c.getContext) return;
 		var o = c.getContext('2d');
 		// element (for width, height)
-		o.element = c;
+		o.elem = c;
 		return o;
 	};
 	var p = CanvasRenderingContext2D.prototype;
