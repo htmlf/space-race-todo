@@ -16,22 +16,15 @@
 	<script src="math/random.js"></script>
 	<script src="math/vector.js"></script>
 	<script src="code/serial.js"></script>
+	<script src="graphics/canvas.js"></script>
+	<script src="graphics/camera.js"></script>
 	<script src="index.js"></script>
 	<title>miver</title>
 </head>
 <body>
-<form class="container">
-<h1>The Big Gandi Theory</h1>
-<div class="row">
-	<div class="input-field col s10">
-		<label for="txt">Shout</label>
-		<input id="txt" type="text">
-	</div>
-	<div class="input-field col s2">
-		<button id="btn" class="waves-effect waves-light btn btn-large" type="button" style="width: 100%;">Out</button>
-	</div>
-</div>
-<ul id="msg"></ul>
-</form>
+<h3>Chibby Squirtle</h3>
+<img id="cam" src="/img/squirtle.png" hidden>
+<img id="obj" src="/img/mankey.png" hidden>
+<canvas id="canvas" width="800" height="600"></canvas>
 </body>
 </html>
