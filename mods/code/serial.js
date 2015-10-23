@@ -1,11 +1,12 @@
 /* @wolfram77 */
-/* SERIAL - define a serially runnable function calls */
+/* SERIAL - define a function call serializer */
 
 (function(g) {
 
 	var $ = function(v) {
 		// functions
 		this.fns = v.fns || [];
+		this.fend = v.fend;
 	};
 	var p = $.prototype;
 
@@ -19,6 +20,7 @@
 	p.end = function() {
 		this.fns.shift();
 		if(this.fns.length>0) this._ntick(this.fns[0]);
+		else if(this.fend) this.fend();
 	};
 
 	// private: next tick
