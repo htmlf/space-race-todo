@@ -1,3 +1,8 @@
+var $p = $code.process;
+$p.nextTick(function() { console.log('hi-1'); });
+$p.nextTick(function() { console.log('hi-2'); });
+console.log('hi-0');
+
 $(document).ready(function() {
 	var c = new $graphics.canvas('canvas');
 	var cm = new $graphics.camera(c);
