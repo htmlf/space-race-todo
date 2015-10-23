@@ -22,7 +22,7 @@
 	// high-res time (with nanoseconds)
 	$.hrtime = function() {
 		var ms = $.now();
-		return [ms/1000, (ms % 1000)*1000000];
+		return [parseInt(ms/1000, 10), (ms % 1000)*1000000];
 	};
 
 	// run function on next tick
