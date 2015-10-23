@@ -6,7 +6,7 @@
 	var $ = function(v) {
 		// functions
 		this.fns = v.fns || [];
-		this.fend = v.fend;
+		this.end = v.end;
 	};
 	var p = $.prototype;
 
@@ -16,11 +16,11 @@
 		if(this.fns.length===1) this._ntick(this.fns[0]);
 	};
 
-	// indicate end of function call
-	p.end = function() {
+	// indicate completion of function call
+	p.done = function() {
 		this.fns.shift();
 		if(this.fns.length>0) this._ntick(this.fns[0]);
-		else if(this.fend) this.fend();
+		else if(this.end) this.end();
 	};
 
 	// private: next tick
