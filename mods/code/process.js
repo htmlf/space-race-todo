@@ -12,23 +12,23 @@
 	var $ = {};
 
 	// high-res time (now)
-	$.now = performance.now || Date.now;
+	$.now = performance.now? function() { return performance.now(); } : Date.now;
 
 	// uptime since navigation
 	$.uptime = function() {
-		return this.now() - this._tload;
+		return $.now() - $._tload;
 	};
 
 	// high-res time (with nanoseconds)
 	$.hrtime = function() {
-		var ms = this.now();
+		var ms = $.now();
 		return [ms/1000, (ms % 1000)*1000000];
 	};
 
 	// run function on next tick
 	$.nextTick = function(fn) {
-		this._tqueue.push(fn);
-		if(this._tqueue.length===1) setTimeout(this._ftick, 0);
+		$._tqueue.push(fn);
+		if($._tqueue.length===1) setTimeout($._ftick, 0);
 	};
 
 	// js memory usage
@@ -46,7 +46,7 @@
 	// private: next tick support function
 	$._ftick = function() {
 		for(var i=0, I=$._tqueue.length; i<I; i++)
-			this._tqueue.shift()();
+			$._tqueue.shift()();
 	};
 
 	// private: module load time
