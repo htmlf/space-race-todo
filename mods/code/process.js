@@ -11,24 +11,49 @@
 
 	var $ = {};
 
-	// current time
-	$.now = function() {
-		return (new Date()).getTime();
-	};
+	// high-res time (now)
+	$.now = performance.now || Date.now;
 
 	// uptime since navigation
 	$.uptime = function() {
-		return $.now() - $.load_time;
+		return this.now() - this._tload;
 	};
 
-	// current high resolution time
+	// high-res time (with nanoseconds)
 	$.hrtime = function() {
-		var ms = $.now();
+		var ms = this.now();
 		return [ms/1000, (ms % 1000)*1000000];
 	};
 
-	// module load time
-	$.load_time = $.now();
+	// run function on next tick
+	$.nextTick = function(fn) {
+		this._tqueue.push(fn);
+		if(this._tqueue.length===1) setTimeout(this._ftick, 0);
+	};
+
+	// js memory usage
+	$.memoryUsage = function() {
+		var v = (performance||{}).memory||{};
+		return {'rss': v.jsHeapSizeLimit||0, 'heapTotal': v.totalJSHeapSize||0, 'heapUsed': v.usedJSHeapSize||0};
+	};
+
+	// platform
+	$.platform = navigator.platform;
+
+	// title
+	$.title = document.title;
+
+	// private: next tick support function
+	$._ftick = function() {
+		for(var i=0, I=$._tqueue.length; i<I; i++)
+			this._tqueue.shift()();
+	};
+
+	// private: module load time
+	$._tload = $.now();
+	// private: next tick queue
+	$._tqueue = [];
+
 
 	// ready
 	(g.$code=g.$code||{}).process = $;
