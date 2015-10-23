@@ -56,6 +56,7 @@
 
 
 	// ready
+	g.process = $;
 	(g.$code=g.$code||{}).process = $;
 	console.log('code.process> ready!');
 })(this);
