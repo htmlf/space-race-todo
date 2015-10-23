@@ -3,15 +3,10 @@
 
 (function(g) {
 
-	var $ = function(canvas) {
-		this.canvas = canvas;
+	var $ = function(v) {
+		this.canvas = v.canvas;
+		this.s = v.state || new $physics.state();
 		this.states = [];
-		this.state = {
-			'pos': [0, 0],
-			'ang': 0,
-			'scl': 1
-		};
-		this.cam = document.getElementById('cam');
 	};
 	var p = $.prototype;
 
@@ -31,17 +26,6 @@
 	p.end = function() {
 		var c = this.canvas;
 		c.restore();
-	};
-
-	// translate
-	p.translate = function(p) {
-		var $v=$math.vector, s=this.state;
-		s.pos = $v.add(s.pos, $v.rotate(p, s.ang));
-	};
-
-	// rotate
-	p.rotate = function(a) {
-		this.state.ang += a;
 	};
 
 	// save state
