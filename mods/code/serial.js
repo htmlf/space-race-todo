@@ -3,39 +3,29 @@
 
 (function(g) {
 
-	var $ = function(ps) {
-		// parameters
-		this.ps = ps || [];
+	var $ = function(v) {
+		// functions
+		this.fns = v.fns || [];
 	};
 	var p = $.prototype;
 
-	// call function with argument list
-	p.call = function(fn, vthis) {
-		this.apply(fn, vthis, Array.prototype.slice.call(arguments, 2));
-	};
-
-	// call function with arguments array
-	p.apply = function(fn, vthis, args) {
-		this.ps.push({'fn': fn, 'vthis': vthis, 'args': args});
-		if(this.ps.length===1) this.run(this.ps[0]);
-	};
-
-	// private: next tick
-	p.nextTick = (typeof process!=='undefined' && process.nextTick)? process.nextTick : function(fn) { setTimeout(fn, 0); };
-
-	// private: run function
-	p.run = function(pr) {
-		this.nextTick(function() { pr.fn.apply(pr.vthis, pr.args); });
+	// run function (serially)
+	p.run = function(fn) {
+		this.fns.push(fn);
+		if(this.fns.length===1) this._ntick(this.fns[0]);
 	};
 
 	// indicate end of function call
 	p.end = function() {
-		this.ps.shift();
-		if(this.ps.length>0) this.run(this.ps[0]);
+		this.fns.shift();
+		if(this.fns.length>0) this._ntick(this.fns[0]);
 	};
+
+	// private: next tick
+	p._ntick = (typeof module!=='undefined')? process.nextTick : $code.process.nextTick;
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$code=g.$code||{}).serial = $;
-	console.log('serial> ready!');
+	console.log('code.serial> ready!');
 })(this);
