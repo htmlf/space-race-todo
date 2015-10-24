@@ -14,7 +14,7 @@
 	// update (run step)
 	p.update = function() {
 		var k=this.k, ig=this.intg, eg=this.extg;
-		var i, j, a, b, I=ig.length, J=eg.length;
+		var i, j, I=ig.length, J=eg.length;
 		for(i=0; i<I; i++) {
 			for(j=i+1; j<I; j++)
 				this._calc(ig[i], ig[j]);
