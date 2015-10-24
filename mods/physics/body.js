@@ -1,5 +1,5 @@
 /* @wolfram77 */
-/* STATE - maintains object state */
+/* BODY - defines a physical body (object) */
 
 (function(g) {
 
@@ -29,6 +29,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$physics=g.$physics||{}).state = $;
-	console.log('state> ready!');
+	else (g.$physics=g.$physics||{}).body = $;
+	console.log('physics.body> ready!');
 })(this);

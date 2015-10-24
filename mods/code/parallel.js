@@ -5,7 +5,7 @@
 
 	var $ = function(v) {
 		// functions
-		this.fns = v.fns || [];
+		this.fns = v.fns||[];
 		this.end = v.end;
 	};
 	var p = $.prototype;
