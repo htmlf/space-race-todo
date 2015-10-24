@@ -1,7 +1,15 @@
 /* @wolfram77 */
-/* FRICTION - define a rough surface */
+/* FRICTION - emulates friction physics */
 
 (function(g) {
 
-	var $ = 
+	var $ = function(v) {
+		this.kfn = v.kfn;
+		this.vs = v.vs||[];
+	};
+	var p = $.prototype;
+
+	p.update = function() {
+		
+	};
 })(this);
