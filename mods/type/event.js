@@ -36,5 +36,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$type=g.$type||{}).event = $;
-	console.log('event> ready!');
+	console.log('type.event> ready!');
 })(this);
