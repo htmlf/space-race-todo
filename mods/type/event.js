@@ -5,7 +5,7 @@
 
 	var $ = function(v) {
 		// subscriptions
-		this.sub = v || {};
+		this.sub = v||{};
 	};
 	var p = $.prototype;
 
