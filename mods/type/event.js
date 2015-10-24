@@ -1,5 +1,5 @@
 /* @wolfram77 */
-/* EVENT - event declaration and handling related functions */
+/* EVENT - defines an event emitter */
 
 (function(g) {
 
@@ -23,6 +23,12 @@
 
 	// declare/publish event
 	p.is = function(e, args) {
+		var o = this;
+		process.nextTick(function() { o._call(); });
+	};
+
+	// private: call functions
+	p._call = function() {
 		for(var se=this.sub[e], i=0, I=(se||[]).length; i<I; i++)
 			se[i](args);
 	};
