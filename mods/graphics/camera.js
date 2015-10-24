@@ -44,5 +44,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$graphics=g.$graphics||{}).camera = $;
-	console.log('camera> ready!');
+	console.log('graphics.camera> ready!');
 })(this);
