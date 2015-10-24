@@ -69,5 +69,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$math=g.$math||{}).vector = $;
-	console.log('vector> ready!');
+	console.log('math.vector> ready!');
 })(this);
