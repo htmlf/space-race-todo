@@ -1,5 +1,5 @@
 /* @wolfram77 */
-/* FRICTION - emulates friction physics */
+/* FRICTION - defines a friction effect */
 
 (function(g) {
 
