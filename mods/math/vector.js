@@ -30,6 +30,12 @@
 		return Math.atan2(a[1], a[0]);
 	};
 
+	// unit (vector)
+	$.unit = function(a) {
+		var l = this.length(a);
+		return [a[0]/l, a[1]/l];
+	};
+
 	// addition
 	$.add = function(a, b) {
 		return [a[0]+b[0], a[1]+b[1]];
@@ -63,5 +69,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$math=g.$math||{}).vector = $;
-	console.log('vector> ready!');
+	console.log('math.vector> ready!');
 })(this);

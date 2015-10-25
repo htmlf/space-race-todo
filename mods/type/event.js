@@ -1,11 +1,11 @@
 /* @wolfram77 */
-/* EVENT - event declaration and handling related functions */
+/* EVENT - defines an event emitter */
 
 (function(g) {
 
 	var $ = function(v) {
 		// subscriptions
-		this.sub = v || {};
+		this.sub = v||{};
 	};
 	var p = $.prototype;
 
@@ -23,6 +23,12 @@
 
 	// declare/publish event
 	p.is = function(e, args) {
+		var o = this;
+		process.nextTick(function() { o._call(); });
+	};
+
+	// private: call functions
+	p._call = function() {
 		for(var se=this.sub[e], i=0, I=(se||[]).length; i<I; i++)
 			se[i](args);
 	};
@@ -30,5 +36,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$type=g.$type||{}).event = $;
-	console.log('event> ready!');
+	console.log('type.event> ready!');
 })(this);

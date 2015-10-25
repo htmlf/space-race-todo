@@ -72,5 +72,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$graphics=g.$graphics||{}).canvas = $;
-	console.log('canvas> ready!');
+	console.log('graphics.canvas> ready!');
 })(this);

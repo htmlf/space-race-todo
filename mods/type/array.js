@@ -31,5 +31,6 @@
 
 	// ready!
 	if(typeof module!=='undefined') module.exports = Array;
-	console.log('array> ready!');
+	else (g.$type=g.$type||{}).array = Array;
+	console.log('type.array> ready!');
 })(this);

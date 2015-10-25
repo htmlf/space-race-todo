@@ -14,5 +14,5 @@
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$math=g.$math||{}).random = $;
-	console.log('random> ready!');
+	console.log('math.random> ready!');
 })(this);
