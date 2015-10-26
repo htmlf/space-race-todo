@@ -34,13 +34,13 @@ var hasDeps = function() {
 // run program
 var run = function() {
 	var shellser = new $serial();
-	if(!hasDeps()) shellser.apply(function() {
+	if(!hasDeps()) shellser.run(function() {
 		console.log('\x1b[36m'+'run> installing dependencies'+'\x1b[0m');
-		shell('npm install', function() { console.log('\n'); shellser.end(); });
+		shell('npm install', function() { console.log('\n'); shellser.done(); });
 	});
-	shellser.apply(function() {
+	shellser.run(function() {
 		console.log('\x1b[36m'+'run> starting server'+'\x1b[0m');
-		shell('node index', function() { console.log('\x1b[36m'+'run> server stopped'+'\x1b[0m'); shellser.end(); });
+		shell('node index', function() { console.log('\x1b[36m'+'run> server stopped'+'\x1b[0m'); shellser.done(); });
 	});
 };
 
