@@ -26,15 +26,15 @@
 		o.pos = $v.add(o.pos, $v.rotate(p, o.ang));
 	};
 
-	// rotate (object)
+	// rotate
 	p.rotate = function(a) {
 		this.ang += a;
 	};
 
-	// scale (object)
+	// scale
 	p.scale = function(s) {
-		this.scl[0] += s[0];
-		this.scl[1] += s[1];
+		this.scl[0] *= s[0];
+		this.scl[1] *= s[1];
 	};
 
 	// update status
