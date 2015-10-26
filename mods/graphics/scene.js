@@ -32,6 +32,13 @@
 		return a;
 	};
 
+	// update (in range)
+	p.update = function(l ,r) {
+		var is = this.get(l, r);
+		for(var i=is.length-1; i>=0; i--)
+			is[i].update();
+	};
+
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
 	else (g.$graphics=g.$graphics||{}).scene = $;
