@@ -9,7 +9,6 @@
 		this.clr = v.clr || 'rgba(0,0,0,0)';
 		this.view = new $physics.state({'pos': vv.pos || [0.5*e.width, 0.5*e.height]});
 		this.s = v.state || new $physics.state();
-		this.states = [];
 	};
 	var p = $.prototype;
 
@@ -29,16 +28,6 @@
 	p.end = function() {
 		var c = this.canvas;
 		c.restore();
-	};
-
-	// save state
-	p.save = function() {
-		this.states.push(this.state);
-	};
-
-	// restore state
-	p.restore = function() {
-		this.state = this.states.pop();
 	};
 
 	// ready
