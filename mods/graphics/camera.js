@@ -7,6 +7,7 @@
 		var o = new $graphics.item(v);
 		var e = v.cnv.elem;
 		o.cnv = v.cnv;
+		o.scn = v.scn;
 		o.kep = v.kep||false;
 		o.clr = v.clr||'rgba(0,0,0,0)';
 		o.viw = v.viw||[0.5*e.width, 0.5*e.height];
@@ -32,6 +33,18 @@
 	p.end = function() {
 		var c = this.cnv;
 		c.restore();
+	};
+
+	// draw camera view
+	p.draw = function() {
+		var o = this;
+		o.begin();
+		for(var l=o.scn.ls.length-1; l>=0; l--) {
+			var is = o.scn.get(l, o._rng);
+			for(var i=is.length-1; i>=0; i--)
+				is[i].draw();
+		}
+		o.end();
 	};
 
 	// ready
