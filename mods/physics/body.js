@@ -15,22 +15,6 @@
 	};
 	var p = $.prototype;
 
-	// translate (object)
-	p.translate = function(p) {
-		var $v=$math.vector;
-		this.pos = $v.add(this.pos, $v.rotate(p, this.ang));
-	};
-
-	// rotate (object)
-	p.rotate = function(a) {
-		this.ang += a;
-	};
-
-	// scale (object)
-	p.scale = function(s) {
-		this.scl[0] += s[0];
-		this.scl[1] += s[1];
-	};
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;

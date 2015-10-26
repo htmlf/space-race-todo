@@ -20,6 +20,23 @@
 	};
 	var p = $.prototype;
 
+	// translate
+	p.translate = function(p) {
+		var o=this, $v=$math.vector;
+		o.pos = $v.add(o.pos, $v.rotate(p, o.ang));
+	};
+
+	// rotate (object)
+	p.rotate = function(a) {
+		this.ang += a;
+	};
+
+	// scale (object)
+	p.scale = function(s) {
+		this.scl[0] += s[0];
+		this.scl[1] += s[1];
+	};
+
 	// update status
 	p.update = function() {
 		var o = this, $r = $math.rect;
