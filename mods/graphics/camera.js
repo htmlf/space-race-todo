@@ -42,7 +42,7 @@
 		for(var l=o.scn.ls.length-1; l>=0; l--) {
 			var is = o.scn.get(l, o._rng);
 			for(var i=is.length-1; i>=0; i--)
-				is[i].draw(o._rng);
+				is[i].draw(o.cnv, o._rng);
 		}
 		o.end();
 	};

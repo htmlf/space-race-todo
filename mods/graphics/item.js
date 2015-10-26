@@ -5,18 +5,20 @@
 
 	var $ = function() {
 		var o = this;
-		o.mas = v.mas||1;
-		o.mir = v.mir||1;
-		o.lyr = v.lyr||0;
-		o.pos = v.pos||[0,0];
-		o.scl = v.scl||[1,1];
-		o.vel = v.vel||[0,0];
-		o.frc = v.frc||[0,0];
-		o.ang = v.ang||0;
-		o.avl = v.avl||0;
-		o.trq = v.trq||0;
-		o.rng = v.rng||[0,0,0,0];
-		o._rng = null;
+		o.stt = v.stt||0; // state
+		o.lop = v.lop||0; // loop
+		o.mas = v.mas||1; // mass
+		o.mir = v.mir||1; // moment of inertia
+		o.lyr = v.lyr||0; // layer
+		o.pos = v.pos||[0,0]; // position
+		o.scl = v.scl||[1,1]; // scale
+		o.vel = v.vel||[0,0]; // velocity
+		o.frc = v.frc||[0,0]; // force
+		o.ang = v.ang||0; // angle
+		o.avl = v.avl||0; // angular velocity
+		o.trq = v.trq||0; // torque
+		o.rng = v.rng||[0,0,0,0]; // range
+		o._rng = null; // temp. range
 	};
 	var p = $.prototype;
 
@@ -49,7 +51,7 @@
 	};
 
 	// draw (empty)
-	p.draw = function(r) {
+	p.draw = function(c, r) {
 	};
 
 	// ready
