@@ -4,7 +4,7 @@
 (function(g) {
 
 	var $ = function(v) {
-		// functions
+		v = v||{};
 		this.fns = v.fns||[];
 		this.end = v.end;
 	};
