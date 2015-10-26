@@ -4,29 +4,33 @@
 (function(g) {
 
 	var $ = function(v) {
-		this.canvas = v.canvas;
-		var e = this.canvas.elem, vv = v.view || {};
-		this.clr = v.clr || 'rgba(0,0,0,0)';
-		this.view = new $physics.state({'pos': vv.pos || [0.5*e.width, 0.5*e.height]});
-		this.s = v.state || new $physics.state();
+		var o = new $graphics.item(v);
+		var e = v.cnv.elem;
+		o.cnv = v.cnv;
+		o.kep = v.kep||false;
+		o.clr = v.clr||'rgba(0,0,0,0)';
+		o.viw = v.viw||[0.5*e.width, 0.5*e.height];
+		o.prototype.merge($.prototype);
+		return o;
 	};
 	var p = $.prototype;
 
 	// begin (before draw)
 	p.begin = function() {
-		var c=this.canvas, s=this.s;
+		var o=this, c=o.cnv, e=c.elem;
 		c.save();
-		c.clearRect(0, 0, c.elem.width, c.elem.height);
-		c.translate(c.elem.width/2, c.elem.height/2);
-		c.drawImage(this.cam, -100,-100);
-		c.scale(s.scl, s.scl);
-		c.rotate(-s.ang);
-		c.translate(-s.pos[0], -s.pos[1]);
+		c.fillStyle = o.clr;
+		if(c.kep) c.fillRect(0, 0, e.width, e.height);
+		else c.clearRect(0, 0, e.width, e.height);
+		c.translate(o.viw[0], o.viw[1]);
+		c.scale(o.scl[0], o.scl[1]);
+		c.rotate(-o.ang);
+		c.translate(-o.pos[0], -o.pos[1]);
 	};
 
 	// end (after draw)
 	p.end = function() {
-		var c = this.canvas;
+		var c = this.cnv;
 		c.restore();
 	};
 
