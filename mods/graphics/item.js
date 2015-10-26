@@ -28,6 +28,11 @@
 		o.avl += o.trq/o.mir;	o.ang += o.avl;
 		o.ang = $v.add(o.ang, $v.scale(o.avl, o.tdel));
 		o._rng = $r.translate(o.rng, o.pos);
+		o.frc = [0,0]; o.trq = [0,0];
+	};
+
+	// draw (empty)
+	p.draw = function(r) {
 	};
 
 	// ready
