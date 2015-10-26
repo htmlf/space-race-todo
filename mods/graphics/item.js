@@ -3,8 +3,9 @@
 
 (function(g) {
 
-	var $ = function() {
+	var $ = function(v) {
 		var o = this;
+		o.typ = v.typ; // type
 		o.stt = v.stt||0; // state
 		o.lop = v.lop||0; // loop
 		o.mas = v.mas||1; // mass
@@ -39,13 +40,17 @@
 		this.scl[1] *= s[1];
 	};
 
-	// update status
-	p.update = function() {
+	// updates collision
+	p.collision = function() {
+
+	};
+
+	// updates motion
+	p.motion = function() {
 		var o = this, $r = $math.rect;
 		o.vel[0] += o.frc[0]/o.mas; o.vel[1] += o.frc[1]/o.mas;
 		o.pos[0] += o.vel[0]; o.pos[1] += o.vel[0];
 		o.avl += o.trq/o.mir;	o.ang += o.avl;
-		o.ang = $v.add(o.ang, $v.scale(o.avl, o.tdel));
 		o._rng = $r.translate(o.rng, o.pos);
 		o.frc = [0,0]; o.trq = [0,0];
 	};

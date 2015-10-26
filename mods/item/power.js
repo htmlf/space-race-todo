@@ -12,7 +12,7 @@
 	var p = $.prototype;
 
 	// draw
-	p.draw = function(c, l, r) {
+	p.draw = function(c, r) {
 		c.strokeStyle = o.clr;
 		c.lineWidth = o.lwd;
 		c.beginPath();
@@ -22,6 +22,6 @@
 
 	// update
 	p.update = function() {
-
+		
 	};
 })(this);
