@@ -20,8 +20,8 @@
 		c.stroke();
 	};
 
-	// update
-	p.update = function() {
-		
-	};
+	// ready
+	if(typeof module!=='undefined') module.exports = $;
+	else (g.$item=g.$item||{}).power = $;
+	console.log('item.power> ready!');
 })(this);

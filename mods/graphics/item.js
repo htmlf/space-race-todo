@@ -14,11 +14,13 @@
 		o.pos = v.pos||[0,0]; // position
 		o.scl = v.scl||[1,1]; // scale
 		o.vel = v.vel||[0,0]; // velocity
-		o.frc = v.frc||[0,0]; // force
+		o.frc = v.frc||[1,0]; // force (generated)
 		o.ang = v.ang||0; // angle
 		o.avl = v.avl||0; // angular velocity
-		o.trq = v.trq||0; // torque
+		o.trq = v.trq||1; // torque (generated)
 		o.rng = v.rng||[0,0,0,0]; // range
+		o._frc = [0,0]; // temp. force
+		o._trq = 0; // temp. torque
 		o._rng = null; // temp. range
 	};
 	var p = $.prototype;
@@ -48,11 +50,16 @@
 	// updates motion
 	p.motion = function() {
 		var o = this, $r = $math.rect;
-		o.vel[0] += o.frc[0]/o.mas; o.vel[1] += o.frc[1]/o.mas;
+		o.vel[0] += o._frc[0]/o.mas; o.vel[1] += o._frc[1]/o.mas;
 		o.pos[0] += o.vel[0]; o.pos[1] += o.vel[0];
-		o.avl += o.trq/o.mir;	o.ang += o.avl;
+		o.avl += o._trq/o.mir; o.ang += o.avl;
 		o._rng = $r.translate(o.rng, o.pos);
-		o.frc = [0,0]; o.trq = [0,0];
+		o._frc = [0,0]; o._trq = 0;
+	};
+
+	// update (all)
+	p.update = function() {
+		this.motion();
 	};
 
 	// draw (empty)
