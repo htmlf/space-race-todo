@@ -3,28 +3,33 @@
 (function(g) {
 
 	var $ = function(v) {
-		var o = new $graphics.item(v);
+		var o = this;
+		o._super(v);
 		o.lif = v.lif||1; // life (max)
 		o._lif = o.lif; // temp. life (now)
-		o.prototype.merge($.prototype);
-		return o;
 	};
 	var p = $.prototype;
+	var $o = $type.object;
+	$o.merge(p, $graphics.item.prototype);
 
+	// super class
+	p._super = $graphics.item;
+
+	// draw boat
 	p.draw = function(c, r) {
+		var o=this, h=o.hull[0];
 		c.save();
 		c.translate(o.pos[0], o.pos[1]);
 		c.rotate(o.ang);
 		c.fillStyle = 'green';
-		var h = this.hull[0];
 		c.path(h.data, h.opt);
-		c.fill(); $c.stroke();
+		c.fill(); c.stroke();
 		c.fillStyle = '#CCE';
 		c.ellipse(0, -15, 20, 24);
-		c.fill(); $c.stroke();
+		c.fill(); c.stroke();
 		c.fillStyle = 'red';
 		c.path([[-25,0], [25,0], [10,10], [-10,10]], 'c');
-		c.fill(); $c.stroke();
+		c.fill(); c.stroke();
 		c.restore();
 	};
 

@@ -20,7 +20,7 @@
 	// remove
 	p.remove = function(l, itm) {
 		var lv = this.ls[l];
-		for(var i=0, I<lv.length; i<I; i++)
+		for(var i=0, I=lv.length; i<I; i++)
 			if(lv[i]===itm) { lv.splice(i, 1); return; }
 	};
 

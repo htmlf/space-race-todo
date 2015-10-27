@@ -4,17 +4,20 @@
 (function(g) {
 
 	var $ = function(v) {
-		var o = new $graphics.item(v);
-		var e = v.cnv.elem;
+		var o=this, e=v.cnv.elem;
+		o._super(v);
 		o.cnv = v.cnv;
 		o.scn = v.scn;
 		o.kep = v.kep||false;
 		o.clr = v.clr||'rgba(0,0,0,0)';
 		o.viw = v.viw||[0.5*e.width, 0.5*e.height];
-		o.prototype.merge($.prototype);
-		return o;
 	};
 	var p = $.prototype;
+	var $o = $type.object;
+	$o.merge(p, $graphics.item.prototype);
+
+	// super class
+	p._super = $graphics.item;
 
 	// begin (before draw)
 	p.begin = function() {
