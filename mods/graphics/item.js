@@ -3,20 +3,25 @@
 
 (function(g) {
 
-	var $ = function() {
+	var $ = function(v) {
 		var o = this;
-		o.mas = v.mas||1;
-		o.mir = v.mir||1;
-		o.lyr = v.lyr||0;
-		o.pos = v.pos||[0,0];
-		o.scl = v.scl||[1,1];
-		o.vel = v.vel||[0,0];
-		o.frc = v.frc||[0,0];
-		o.ang = v.ang||0;
-		o.avl = v.avl||0;
-		o.trq = v.trq||0;
-		o.rng = v.rng||[0,0,0,0];
-		o._rng = null;
+		o.typ = v.typ; // type
+		o.stt = v.stt||0; // state
+		o.lop = v.lop||0; // loop
+		o.mas = v.mas||1; // mass
+		o.mir = v.mir||1; // moment of inertia
+		o.lyr = v.lyr||0; // layer
+		o.pos = v.pos||[0,0]; // position
+		o.scl = v.scl||[1,1]; // scale
+		o.vel = v.vel||[0,0]; // velocity
+		o.frc = v.frc||[0,-0.1]; // force (generated)
+		o.ang = v.ang||0; // angle
+		o.avl = v.avl||0; // angular velocity
+		o.trq = v.trq||0.0005; // torque (generated)
+		o.rng = v.rng||[0,0,0,0]; // range
+		o._frc = [0,0]; // temp. force
+		o._trq = 0; // temp. torque
+		o._rng = null; // temp. range
 	};
 	var p = $.prototype;
 
@@ -37,19 +42,28 @@
 		this.scl[1] *= s[1];
 	};
 
-	// update status
-	p.update = function() {
+	// updates collision
+	p.collision = function() {
+
+	};
+
+	// updates motion
+	p.motion = function() {
 		var o = this, $r = $math.rect;
-		o.vel[0] += o.frc[0]/o.mas; o.vel[1] += o.frc[1]/o.mas;
-		o.pos[0] += o.vel[0]; o.pos[1] += o.vel[0];
-		o.avl += o.trq/o.mir;	o.ang += o.avl;
-		o.ang = $v.add(o.ang, $v.scale(o.avl, o.tdel));
+		o.vel[0] += o._frc[0]/o.mas; o.vel[1] += o._frc[1]/o.mas;
+		o.pos[0] += o.vel[0]; o.pos[1] += o.vel[1];
+		o.avl += o._trq/o.mir; o.ang += o.avl;
 		o._rng = $r.translate(o.rng, o.pos);
-		o.frc = [0,0]; o.trq = [0,0];
+		o._frc = [0,0]; o._trq = 0;
+	};
+
+	// update (all)
+	p.update = function() {
+		this.motion();
 	};
 
 	// draw (empty)
-	p.draw = function(r) {
+	p.draw = function(c, r) {
 	};
 
 	// ready

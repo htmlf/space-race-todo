@@ -4,7 +4,6 @@
 (function(g) {
 
 	var $ = function(id) {
-		console.log(id);
 		var c = document.getElementById(id);
 		if(!c.getContext) return;
 		var o = c.getContext('2d');
@@ -33,7 +32,6 @@
 
 	// path (line)
 	p.pathLine = function(p, closed) {
-		console.log(this);
 		this.beginPath();
 		if(p.length>0) this.moveTo(p[0][0], p[0][1]);
 		for(var i=0, I=p.length; i<I; i++)
@@ -62,9 +60,9 @@
 
 	// path (generic)
 	p.path = function(p, opt) {
-		opt = opt || '';
+		opt = opt||'';
 		var closed = opt.indexOf('c')>=0;
-		if(!p.length) this.pathFn(p, closed);
+		if(p[0] && !p[0].length) this.pathFn(p, closed);
 		else if(opt.indexOf('s')<0) this.pathLine(p, closed);
 		else this.pathSmooth(p, closed);
 	};
