@@ -8,7 +8,7 @@
 		o._super(v);
 		o.clr = v.clr||'#CCE';
 		o.pth = v.pth||[];
-		o.thk = v.thk||200;
+		o.thk = v.thk||400;
 	};
 	var p = $.prototype;
 	var $o = $type.object;
@@ -21,7 +21,7 @@
 	p.make = function(opt) {
 		var o=this, $r=$math.random, $v=$math.vector;
 		o.pth = [];
-		var r=opt.r||50, dr=opt.dr||[-0.1,0.1];
+		var r=opt.r||500, dr=opt.dr||[-1,1];
 		var a=opt.a||0, da=opt.da||[-1,1];
 		var p=opt.p||[0,0], pd=null, rd=0, ad=0;
 		for(var i=0, I=opt.size||100; i<I; i++) {

@@ -17,14 +17,15 @@
 
 	// draw boat
 	p.draw = function(c, r) {
-		var o=this, h=o.hull[0];
+		var o=this, h=o.hull[1];
 		c.save();
 		c.translate(o.pos[0], o.pos[1]);
 		c.rotate(o.ang);
 		c.fillStyle = 'green';
 		c.path(h.data, h.opt);
 		c.fill(); c.stroke();
-		c.fillStyle = '#CCE';
+		c.fillStyle = '#AEE';
+		c.beginPath();
 		c.ellipse(0, -15, 20, 24);
 		c.fill(); c.stroke();
 		c.fillStyle = 'red';
