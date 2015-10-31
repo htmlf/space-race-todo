@@ -53,7 +53,6 @@
 		o.vel[0] += o._frc[0]/o.mas; o.vel[1] += o._frc[1]/o.mas;
 		o.pos[0] += o.vel[0]; o.pos[1] += o.vel[1];
 		o.avl += o._trq/o.mir; o.ang += o.avl;
-		console.log($math);
 		o._rng = $r.translate(o.rng, o.pos);
 		o._frc = [0,0]; o._trq = 0;
 	};
