@@ -1,6 +1,6 @@
-# game-miver
+# game-space-lane
 
-race using speed boats on a river of milk with friends
+race using speed ships on a solar-streamed space lane with friends
 
 object definition:
 {
