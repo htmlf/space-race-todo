@@ -68,6 +68,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$math=g.$math||{}).vector = $;
+	(g.math=g.math||{}).vector = $;
 	console.log('math.vector> ready!');
-})(this);
+})($$);

@@ -7,12 +7,14 @@ var express = require('express');
 var socketio = require('socket.io');
 
 // load mods
+global.$$ = {}; // modules container
 var $array = require('./mods/type/array');
 var $event = require('./mods/type/event');
 var $table = require('./mods/type/table');
 var $line = require('./mods/math/line');
 var $random = require('./mods/math/random');
 var $vector = require('./mods/math/vector');
+var $process = require('./mods/code/process');
 var $serial = require('./mods/code/serial');
 
 // init server

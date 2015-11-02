@@ -6,6 +6,7 @@
 	// ready?
 	if(typeof module!=='undefined') {
 		module.exports = process;
+		(g.code=g.code||{}).process = process;
 		return;
 	}
 
@@ -16,19 +17,19 @@
 
 	// uptime since navigation
 	$.uptime = function() {
-		return $.now() - $._tload;
+		return this.now() - this._tload;
 	};
 
 	// high-res time (with nanoseconds)
 	$.hrtime = function() {
-		var ms = $.now();
+		var ms = this.now();
 		return [parseInt(ms/1000, 10), (ms % 1000)*1000000];
 	};
 
 	// run function on next tick
 	$.nextTick = function(fn) {
-		$._tqueue.push(fn);
-		if($._tqueue.length===1) setTimeout($._ftick, 0);
+		this._tqueue.push(fn);
+		if(this._tqueue.length===1) setTimeout(this._ftick, 0);
 	};
 
 	// js memory usage
@@ -45,8 +46,8 @@
 
 	// private: next tick support function
 	$._ftick = function() {
-		for(var i=0, I=$._tqueue.length; i<I; i++)
-			$._tqueue.shift()();
+		for(var i=0, I=this._tqueue.length; i<I; i++)
+			this._tqueue.shift()();
 	};
 
 	// private: module load time
@@ -56,7 +57,6 @@
 
 
 	// ready
-	g.process = $;
-	(g.$code=g.$code||{}).process = $;
+	(g.code=g.code||{}).process = $;
 	console.log('code.process> ready!');
-})(this);
+})($$);

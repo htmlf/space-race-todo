@@ -1,25 +1,21 @@
 /* @wolfram77 */
 /* RIVER - defines a river (race track) */
 
-(function(g) {
+(function(g, $o, $r, $v, $l) {
 
 	var $ = function(v) {
 		var o = this;
-		o._super(v);
+		o.$super(v);
 		o.clr = v.clr||'#CCE';
 		o.pth = v.pth||[];
 		o.thk = v.thk||400;
 	};
+	$o.inherit($, $$.graphics.item);
 	var p = $.prototype;
-	var $o = $type.object;
-	$o.merge(p, $graphics.item.prototype);
-
-	// super class
-	p._super = $graphics.item;
 
 	// make path
 	p.make = function(opt) {
-		var o=this, $r=$math.random, $v=$math.vector;
+		var o=this;
 		o.pth = [];
 		var r=opt.r||500, dr=opt.dr||[-1,1];
 		var a=opt.a||0, da=opt.da||[-1,1];
@@ -50,7 +46,6 @@
 
 	// private: check if line a to b intersects with path
 	p._intersects = function(a, b) {
-		var $l = $math.line;
 		for(var i=1, p=this.pth; i<p.length; i++)
 			if($l.intersectRanged([p[i-1],p[i]], [a,b])) return [p[i-1], p[i]];
 		return null;
@@ -58,6 +53,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$item=g.$item||{}).river = $;
+	(g.item=g.item||{}).river = $;
 	console.log('item.river> ready!');
-})(this);
+})($$, $$.type.object, $$.math.random, $$.math.vector, $$.math.line);

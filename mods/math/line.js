@@ -38,9 +38,9 @@
 		var p = this.intersect(this.define(a[0], a[1]), this.define(b[0], b[1]));
 		return ((p[0]>=a[0][0] && p[0]<=a[1][0])&&(p[0]>=b[0][0] && p[0]<=b[1][0]))? p : null;
 	};
-
+	
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$math=g.$math||{}).line = $;
+	(g.math=g.math||{}).line = $;
 	console.log('math.line> ready!');
-})(this);
+})($$);

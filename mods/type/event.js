@@ -4,8 +4,7 @@
 (function(g) {
 
 	var $ = function(v) {
-		// subscriptions
-		this.sub = v||{};
+		this.sub = v||{};	// subscriptions
 	};
 	var p = $.prototype;
 
@@ -35,6 +34,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$type=g.$type||{}).event = $;
+	(g.type=g.type||{}).event = $;
 	console.log('type.event> ready!');
-})(this);
+})($$);

@@ -13,6 +13,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$math=g.$math||{}).random = $;
+	(g.math=g.math||{}).random = $;
 	console.log('math.random> ready!');
-})(this);
+})($$);

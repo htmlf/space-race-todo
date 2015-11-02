@@ -13,7 +13,7 @@
 	};
 	var p = CanvasRenderingContext2D.prototype;
 
-	// ellipse path
+	// ellipse (path part)
 	// thanks: http://www.williammalone.com/briefs/how-to-draw-ellipse-html5-canvas/
 	p.ellipse = function(x, y, w, h) {
 		var a=0.5*w, b=0.5*0.8*h;
@@ -69,6 +69,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$graphics=g.$graphics||{}).canvas = $;
+	(g.graphics=g.graphics||{}).canvas = $;
 	console.log('graphics.canvas> ready!');
-})(this);
+})($$);

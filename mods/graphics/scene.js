@@ -5,8 +5,7 @@
 
 	var $ = function(v) {
 		v = v||{};
-		// layers
-		this.ls = new Array(v.nlyr||3);
+		this.ls = new Array(v.nlyr||3); // layers
 		for(var i=0, I=this.ls.length; i<I; i++)
 			this.ls[i] = [];
 	};
@@ -41,6 +40,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$graphics=g.$graphics||{}).scene = $;
+	(g.graphics=g.graphics||{}).scene = $;
 	console.log('graphics.scene> ready!');
-})(this);
+})($$);

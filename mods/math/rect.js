@@ -22,6 +22,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$math=g.$math||{}).rect = $;
+	(g.math=g.math||{}).rect = $;
 	console.log('math.rect> ready!');
-})(this);
+})($$);

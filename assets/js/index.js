@@ -1,20 +1,23 @@
+window.$$ = {}; // modules container
+
+// on document ready
 var ready = function() {
-	var cnv = new $graphics.canvas('canvas');
-	var cam = new $graphics.camera({'cnv': cnv});
-	var rvr = new $item.river({});
-	var bot = new $item.boat({});
-	var $v = $math.vector;
+	var cnv = new $$.graphics.canvas('canvas'), e = cnv.elem;
+	var cam = new $$.graphics.camera({'cnv': cnv, 'viw': [0.5*e.width, 0.9*e.height]});
+	var rvr = new $$.item.river({});
+	var bot = new $$.item.boat({'typ': 1, 'scl': [2,2]});
+	var $v = $$.math.vector;
 	var k = new Array(256);
-	console.log(rvr);
 	rvr.make({});
 	var draw = function() {
 		cam.begin();
 		rvr.draw(cnv);
 		bot.draw(cnv);
-		if(k[87]) bot._frc = $v.add(bot._frc, $v.rotate(bot.frc, bot.ang));
-		if(k[83]) bot._frc = $v.sub(bot._frc, $v.rotate(bot.frc, bot.ang));
-		if(k[65]) bot._trq -= bot.trq;
-		if(k[68]) bot._trq += bot.trq;
+		if(k[87]) bot.frc = $v.add(bot.frc, $v.rotate([0,-0.1], bot.ang));
+		if(k[83]) bot.frc = $v.sub(bot.frc, $v.rotate([0,-0.1], bot.ang));
+		if(k[65]) bot.trq -= 0.001;
+		if(k[68]) bot.trq += 0.001;
+		if(k[66]) bot.lif-=0.001;
 		bot.update();
 		cam.end();
 		cam.pos = bot.pos;

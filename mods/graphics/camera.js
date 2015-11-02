@@ -1,23 +1,20 @@
 /* @wolfram77 */
 /* CAMERA - manage camera for scene view */
 
-(function(g) {
+(function(g, $o, $i) {
 
 	var $ = function(v) {
 		var o=this, e=v.cnv.elem;
-		o._super(v);
+		console.log(o);
+		o.$super(v);
 		o.cnv = v.cnv;
 		o.scn = v.scn;
 		o.kep = v.kep||false;
 		o.clr = v.clr||'rgba(0,0,0,0)';
 		o.viw = v.viw||[0.5*e.width, 0.5*e.height];
 	};
+	$o.inherit($, $$.graphics.item);
 	var p = $.prototype;
-	var $o = $type.object;
-	$o.merge(p, $graphics.item.prototype);
-
-	// super class
-	p._super = $graphics.item;
 
 	// begin (before draw)
 	p.begin = function() {
@@ -52,6 +49,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$graphics=g.$graphics||{}).camera = $;
+	(g.graphics=g.graphics||{}).camera = $;
 	console.log('graphics.camera> ready!');
-})(this);
+})($$, $$.type.object);

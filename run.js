@@ -2,8 +2,10 @@
 /* RUN - build and run the server */
 
 // required modules
-var childProcess = require('child_process');
+global.$$ = {}; // modules container
 var fs = require('fs');
+var childProcess = require('child_process');
+var $process = require('./mods/code/process');
 var $serial = require('./mods/code/serial');
 
 

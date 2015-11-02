@@ -1,7 +1,7 @@
 /* @wolfram77 */
 /* PARALLEL - define a function call parallelizer */
 
-(function(g) {
+(function(g, $p) {
 
 	var $ = function(v) {
 		v = v||{};
@@ -14,7 +14,7 @@
 	p.run = function(fn) {
 		var o = this;
 		this.fns.push(fn);
-		if(this.fns.length===1) process.nextTick(function() { o._call(); });
+		if(this.fns.length===1) $p.nextTick(function() { o._call(); });
 	};
 
 	// indicate completion of function call
@@ -31,6 +31,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$code=g.$code||{}).parallel = $;
+	(g.code=g.code||{}).parallel = $;
 	console.log('code.parallel> ready!');
-})(this);
+})($$, $$.code.process);

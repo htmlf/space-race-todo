@@ -41,6 +41,6 @@
 
 	// ready
 	if(typeof module!=='undefined') module.exports = $;
-	else (g.$type=g.$type||{}).table = $;
+	(g.type=g.type||{}).table = $;
 	console.log('type.table> ready!');
-})(this);
+})($$);
