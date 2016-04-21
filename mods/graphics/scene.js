@@ -4,10 +4,10 @@
 (function(g) {
 
 	var $ = function(v) {
-		v = v||{};
-		this.ls = new Array(v.nlyr||3); // layers
-		for(var i=0, I=this.ls.length; i<I; i++)
-			this.ls[i] = [];
+		var o = this;
+		o.ls = new Array(v||3); // number of layers
+		for(var i=o.ls.length-1; i>=0; i--)
+			o.ls[i] = [];
 	};
 	var p = $.prototype;
 

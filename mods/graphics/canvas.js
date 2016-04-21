@@ -1,7 +1,7 @@
 /* @wolfram77 */
 /* CANVAS - html canvas related operations */
 
-(function(g) {
+(function(g, $l) {
 
 	var $ = function(id) {
 		var c = document.getElementById(id);
@@ -34,15 +34,14 @@
 	p.pathLine = function(p, closed) {
 		this.beginPath();
 		if(p.length>0) this.moveTo(p[0][0], p[0][1]);
-		for(var i=0, I=p.length; i<I; i++)
+		for(var i=1, I=p.length; i<I; i++)
 			this.lineTo(p[i][0], p[i][1]);
 		if(closed) this.closePath();
 	};
 
 	// path (smooth)
 	p.pathSmooth = function(p, closed) {
-		var $l = $math.line;
-		if(p.length<3) { pathLine(p, closed);	return;	}
+		if(p.length<3) { this.pathLine(p, closed); return; }
 		this.beginPath();
 		this.moveTo(p[0][0], p[0][1]);
 		var ln = $l.parallel($l.define(p[p.length-1], p[1]), p[0]), ln0 = ln, ln1, pi;
@@ -71,4 +70,4 @@
 	if(typeof module!=='undefined') module.exports = $;
 	(g.graphics=g.graphics||{}).canvas = $;
 	console.log('graphics.canvas> ready!');
-})($$);
+})($$, $$.math.line);

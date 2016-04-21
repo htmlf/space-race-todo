@@ -30,6 +30,11 @@
 		return Math.atan2(a[1], a[0]);
 	};
 
+	// slope
+	$.slope = function(a) {
+		return a[1]/a[0];
+	};
+
 	// unit (vector)
 	$.unit = function(a) {
 		var l = this.length(a);

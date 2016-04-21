@@ -23,20 +23,33 @@
 	};
 
 	// append an array
-	$.append = function(dst, src) {
-		dst.push.apply(dst, arr);
-		return dst;
+	$.append = function(d, a) {
+		d.push.apply(d, a);
+		return d;
 	};
 
 	// last item
-	$.last = function(arr) {
-		return arr[arr.length-1];
+	$.last = function(a) {
+		return a[a.length-1];
+	};
+
+	// index of item
+	$.indexOf = function(a, val, bgn, end) {
+		for(var i=bgn||0, I=end||a.length; i<I; i++)
+			if(a[i]==val) return i;
+		return -1;
+	};
+
+	// pack array items (non-null)
+	$.pack = function(a) {
+		for(var i=0, j=0, I=a.length; i<I; i++)
+			if(a[i]!==null) { a[j] = a[i]; j++; }
 	};
 
 	// formatted join
-	$.fjoin = function(src, fmt, sep) {
-		for(var i=0,I=src.length,dst=''; i<I; i++)
-			dst += fmt.replace(/%i/g, src[i]) + (i===I-1? '' : sep||',');
+	$.fjoin = function(arr, fmt, sep) {
+		for(var i=0, I=arr.length, dst=''; i<I; i++)
+			dst += fmt.replace(/%i/g, arr[i]) + (i===I-1? '' : sep||',');
 		return dst;
 	};
 
