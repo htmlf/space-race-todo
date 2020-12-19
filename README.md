@@ -1,6 +1,4 @@
-# game-space-lane
-
-race using speed ships on a solar-streamed space lane with friends
+Race using speed ships on a solar-streamed space lane with friends.
 
 object definition:
 {
