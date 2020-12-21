@@ -1,6 +1,7 @@
 {
   "name": "game-miver",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.0.2",
   "description": "race using speed boats on a river of milk with friends",
   "main": "index.js",
   "scripts": {
